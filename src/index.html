@@ -1,0 +1,168 @@
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="Examples for bootstrap-slider plugin">
+	    <meta name="author" content="">
+
+	    <title>Slider for Bootstrap Examples Page</title>
+
+	    <!-- core CSS -->
+	    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	    <link href="bootstrap/css/docs.css" rel="stylesheet">
+	    <link href="css/bootstrap-slider.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<script type="text/javascript" src="bootstrap/js/modernizr.js"></script>
+    
+  	</head>
+
+  <body>
+
+    <div class="container">
+      	<!-- Example row of columns -->
+      	<div class="row" style="text-align:center;">
+        	<div class="col-md-4">
+			    <input id="ex1" data-slider-id="ex1Slider" type="text" data-bind="sliderValue: {value: amount, min:0, max: 5000, step: 1, tooltip: 'always', formatter:formatter1}" style="display: none;">
+
+              <h4>Amount</h4>
+              <p>Select a loan amount. Then check the monthly repayment below and think if you can comfortably repay that amount. If you are unsure, lower the loan amount or increase the loan term.
+              </p>
+
+      		</div>
+        	<div class="col-md-4">
+          		<input id="ex2" data-slider-id="ex2Slider" type="text" data-bind="sliderValue: {value: loanperiod, min:0, max: 36, step: 0.01, tooltip: 'always', formatter:formatter2}"
+				style="display: none;">
+
+              <h4>Loan period</h4>
+              <p>Select the time over which you will repay the loan. Shorter period is cheaper, longer period lets you pay smaller monthly repayments but at a higher cost.
+              </p>
+       		</div>
+        	<div class="col-md-4">
+          		<input id="ex3" data-slider-id="ex3Slider" type="text" data-bind="sliderValue: {value: creditrating, min:4.5, max: 22.5, step: 4.5, tooltip: 'always', formatter:formatter3 }" style="display: none;">
+
+              <h4>Credit rating</h4>
+              <p id="creditRatingPgh">C is an average credit rating in your country. This is typical with adults with a typical income and debt which does not normally cause tightness of money due to repayments.
+              </p>
+        	</div>
+      	</div>
+        
+        
+          
+			<div class="col-md-12" style="text-align:center;">
+            <div class="table-responsive">
+            <h3>Repayment summary</h3>
+            <table class="table table-bordered table-striped">
+              <tbody>
+                <tr>
+                  <td>Monthly repayment</td>
+                  <td <input data-bind="value: amount, valueUpdate: 'afterkeydown'"><input data-bind="value: amount1"/></td>
+                </tr>
+                <tr>
+                  <td>Total repayment</td>
+                  <td data-bind="value: loanperiod, valueUpdate: 'afterkeydown'"><input data-bind="value: loanperiod1" /></td>
+                </tr>
+                <tr>
+                  <td>Total interest and fees</td>
+                  <td  data-bind="value: creditrating, valueUpdate: 'afterkeydown'"><input data-bind="value: creditrating1"/></td>
+                </tr>             
+              </tbody>
+            </table>
+          </div>
+          </div>
+       
+        
+    </div> <!-- /container -->
+
+
+    <!-- core JavaScript
+    ================================================== -->
+    <!-- <script type="text/javascript" src="bootstrap/js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-slider.js"></script> -->
+	<script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js'></script>		
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	
+	<!-- <script type='text/javascript' src="lib/bootstrap-slider.min.js"></script> -->
+	<script type="text/javascript" src="js/bootstrap-slider.js"></script>	
+    <script type='text/javascript' src="lib/bootstrap-slider-knockout-binding.js"></script>
+	
+    <script type="text/javascript">
+    	$(document).ready(function() {        
+		    function viewModel() {
+				var self = this;
+				self.amount = ko.observable(200);
+				var amount = ko.observable(200);
+				self.formatter1 = function(amount) {
+				  return amount + ' kk';
+				}
+				
+				self.loanperiod = ko.observable(10.00);
+				var loanperiod = ko.observable(10.00);
+				self.formatter2 = function(loanperiod) {
+				  return loanperiod + ' %';
+				}
+				
+				self.creditrating = ko.observable(13.5);
+				var creditrating = ko.observable(13.5);
+				self.formatter3 = function(creditrating) {					
+					  
+					  var str = 'Rating ';
+					  var str1 = 'is an average credit rating in your country. ';
+					  if(creditrating == 4.5){
+						str += 'A ' + creditrating;
+						str1 = 'A ' + str1 + 'AAAAAAAAAAAAAAAA BBkk akhflka alklaknkjad alkdfanhkrew adlkdsnlkjdalk alkdk.';
+					  }
+					  if(creditrating == 9.0){
+						str += 'B ' + creditrating;
+						str1 = 'B ' + str1 + 'BBBBBBB d788943thjdf  e89il,l sahjdfkjks sakjhfg  akuij';
+					  }
+
+					  if(creditrating == 13.5)
+					  {
+						str += 'C ' + creditrating;
+						str1 = 'C ' + str1+ 'CCCCCCCCCCCCC sojslkdi skdsndsa akdnmkd dfalkdfga dfgkodfg reg899203 w39dsr ';
+					  }
+					  if(creditrating == 18.0)
+						{
+						  str += 'D ' + creditrating;
+						  str1 = 'D ' + str1+ 'DDDDD lkjdfsj lqkjd sapltr4[043 qof -sa  aopa aqop2-09 a oikdjfl dsfsfd ';
+						}
+					  if(creditrating == 22.5)
+						{
+						  str += 'E ' + creditrating;
+						  str1 = 'E ' + str1+ 'EEEEEE aolkjfsj;la 904q7243n q89k nlk sa8 943n lkq wafv n  ba ';
+						}
+
+						$('#creditRatingPgh')[0].innerText = str1;
+					  
+					  return str + ' %';
+				}
+				
+			   
+				self.amount1 = ko.computed(function() {
+					return (self.amount() + self.loanperiod()) * self.creditrating() + " €/month";
+				});
+
+				self.loanperiod1 = ko.computed(function() {
+					return (self.amount() - self.loanperiod()) * self.creditrating() + " €";
+				});
+
+				self.creditrating1 = ko.computed(function() {
+					return (self.amount() - self.loanperiod()) / self.creditrating() + " %";
+				});
+           };
+		   
+           ko.applyBindings(new viewModel());
+		   
+		   $( "#ex1Slider" ).on( "slidechange", function( event, ui ) {
+				console.log('-----');
+		   } );
+
+
+		});
+    </script>
+    <!-- Placed at the end of the document so the pages load faster -->
+  
+
+</body></html>
